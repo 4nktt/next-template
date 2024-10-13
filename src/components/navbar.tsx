@@ -13,21 +13,28 @@ import {
   Navbar as NextUINavbar,
 } from "@nextui-org/react";
 import { IconPackage } from "@tabler/icons-react";
+import { useSession } from "next-auth/react";
 
+import AuthButton from "./auth-button";
 import { ThemeSwitcher } from "./theme-switcher";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { status } = useSession();
 
   const menuItems = [
     {
       label: "Home",
       href: "/",
     },
-    {
-      label: "Profile",
-      href: "/profile",
-    },
+    ...(status === "authenticated"
+      ? [
+          {
+            label: "Profile",
+            href: "/profile",
+          },
+        ]
+      : []),
   ];
 
   return (
@@ -56,6 +63,9 @@ export default function Navbar() {
       <NavbarContent justify="end">
         <NavbarItem>
           <ThemeSwitcher />
+        </NavbarItem>
+        <NavbarItem>
+          <AuthButton />
         </NavbarItem>
       </NavbarContent>
 
