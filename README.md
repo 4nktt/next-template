@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next Template
 
-## Getting Started
+A simple template for Next.js.
 
-First, run the development server:
+- [Next Template](#next-template)
+  - [Stack](#stack)
+  - [Branches](#branches)
+  - [Setup](#setup)
+  - [Resources](#resources)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Stack
+
+- Linting / Code Style
+  - [eslint](https://www.npmjs.com/package/eslint)
+    - [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier)
+      - [ESLint | Next.js](https://nextjs.org/docs/app/building-your-application/configuring/eslint#prettier)
+    - [eslint-plugin-check-file](https://www.nvpmjs.com/package/eslint-plugin-check-file)
+      - [Bulletproof React Guide](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-standards.md#file-naming-conventions)
+    - [eslint-plugin-n](https://www.npmjs.com/package/eslint-plugin-n)
+  - [prettier](https://www.npmjs.com/package/prettier)
+    - [@trivago/prettier-plugin-sort-imports](https://www.npmjs.com/package/@trivago/prettier-plugin-sort-imports)
+    - [prettier-plugin-tailwindcss](https://www.npmjs.com/package/prettier-plugin-tailwindcss)
+      - [Automatic Class Sorting](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier#how-classes-are-sorted)
+- Commits
+  - [husky](https://www.npmjs.com/package/husky)
+  - [lint-staged](https://www.npmjs.com/package/lint-staged)
+  - [commitlint](https://www.npmjs.com/package/@commitlint/cli)
+    - [config-conventional](https://www.npmjs.com/package/@commitlint/config-conventional)
+    - [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
+  - [commitizen](https://www.npmjs.com/package/commitizen)
+    - [cz-conventional-changelog](https://www.npmjs.com/package/cz-conventional-changelog)
+- Environment Variables
+  - [dotenv](https://www.npmjs.com/package/dotenv)
+  - [dotenv-expand](https://www.npmjs.com/package/dotenv-expand)
+  - [@t3-oss/env-nextjs](https://www.npmjs.com/package/@t3-oss/env-nextjs)
+    - [Documentation](https://env.t3.gg/docs/nextjs)
+  - [cross-env](https://www.npmjs.com/package/cross-env)
+- Styles / UI
+  - [tailwindcss](https://www.npmjs.com/package/tailwindcss)
+  - [@nextui-org/react](https://www.npmjs.com/package/@nextui-org/react)
+    - [NextUI](https://nextui.org/docs/guide/introduction)
+  - [next-themes](https://www.npmjs.com/package/next-themes)
+  - [@tabler/icons-react](https://www.npmjs.com/package/@tabler/icons-react)
+    - [Tabler Icon Search](https://tabler.io/icons)
+- Database
+  - [drizzle-orm](https://www.npmjs.com/package/drizzle-orm)
+  - [postgres](https://www.npmjs.com/package/postgres)
+  - [drizzle-kit](https://www.npmjs.com/package/drizzle-kit)
+- Authentication
+  - [next-auth](https://www.npmjs.com/package/next-auth)
+  - [@auth/drizzle-adapter](https://www.npmjs.com/package/@auth/drizzle-adapter)
+    - [Auth.js Drizzle Adapter Documentation](https://authjs.dev/getting-started/adapters/drizzle)
+
+## Branches
+
+The main branch contains the entire setup. The following branches build on each other from top to bottom:
+
+- [base](https://github.com/4nktt/next-template/tree/base)
+  - eslint / prettier / vscode / husky / lint-staged / commitlint / commitzen
+- [ui](https://github.com/4nktt/next-template/tree/ui)
+  - layout / styles
+  - dark / light theme toggle
+- [env](https://github.com/4nktt/next-template/tree/env)
+  - typesafe environment variables
+- [auth](https://github.com/4nktt/next-template/tree/auth)
+  - google oauth with no database
+- [database](https://github.com/4nktt/next-template/tree/database) / [main](https://github.com/4nktt/next-template)
+  - basic drizzle schema with users / accounts / sessions
+
+## Setup
+
+1. Install dependencies:
+
+```sh
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Copy the `.env` file:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+cp .env.sample .env
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Update the following values in the `.env` file:
 
-## Learn More
+```sh
+NEXTAUTH_SECRET=<your-value-here>
+GOOGLE_CLIENT_ID=<your-value-here>
+GOOGLE_CLIENT_SECRET=<your-value-here>
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Start the database:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```sh
+docker compose up
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. Migrate the database:
 
-## Deploy on Vercel
+```sh
+pnpm run db:migrate
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+6. Start the app:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```sh
+pnpm run dev
+```
+
+## Resources
+
+- [Next.js Discord FAQs](https://nextjs-faq.com/)
+  - ["Module not found" error on deployment but build works fine locally](https://nextjs-faq.com/module-not-found-due-to-case-sensitivity)
+- [Bulletproof React](https://github.com/alan2207/bulletproof-react)
