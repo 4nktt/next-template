@@ -15,6 +15,9 @@ A simple template for Next.js.
     - [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier)
       - [ESLint | Next.js](https://nextjs.org/docs/app/building-your-application/configuring/eslint#prettier)
     - [eslint-plugin-tailwindcss](https://www.npmjs.com/package/eslint-plugin-tailwindcss)
+    - [eslint-plugin-testing-library](https://www.npmjs.com/package/eslint-plugin-testing-library)
+    - [eslint-plugin-jest-dom](https://www.npmjs.com/package/eslint-plugin-jest-dom)
+    - [eslint-plugin-jest](https://www.npmjs.com/package/eslint-plugin-jest)
     - [eslint-plugin-check-file](https://www.npmjs.com/package/eslint-plugin-check-file)
       - [Bulletproof React Guide](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-standards.md#file-naming-conventions)
     - [eslint-plugin-n](https://www.npmjs.com/package/eslint-plugin-n)
@@ -51,6 +54,13 @@ A simple template for Next.js.
   - [next-auth](https://www.npmjs.com/package/next-auth)
   - [@auth/drizzle-adapter](https://www.npmjs.com/package/@auth/drizzle-adapter)
     - [Auth.js Drizzle Adapter Documentation](https://authjs.dev/getting-started/adapters/drizzle)
+- Testing
+  - [@testing-library/react](https://www.npmjs.com/package/@testing-library/react)
+  - [@testing-library/dom](https://www.npmjs.com/package/@testing-library/dom)
+  - [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom)
+  - [@testing-library/user-event](https://www.npmjs.com/package/@testing-library/user-event)
+  - [jest](https://www.npmjs.com/package/jest)
+  - [jest-environment-jsdom](https://www.npmjs.com/package/jest-environment-jsdom)
 
 ## Branches
 
@@ -65,8 +75,11 @@ The main branch contains the entire setup. The following branches build on each 
   - typesafe environment variables
 - [auth](https://github.com/4nktt/next-template/tree/auth)
   - google oauth with no database
-- [database](https://github.com/4nktt/next-template/tree/database) / [main](https://github.com/4nktt/next-template)
+- [database](https://github.com/4nktt/next-template/tree/database)
   - basic drizzle schema with users / accounts / sessions
+- [test](https://github.com/4nktt/next-template/tree/test) / [main](https://github.com/4nktt/next-template)
+  - @testing-library/react
+  - jest
 
 ## Setup
 

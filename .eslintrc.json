@@ -2,6 +2,9 @@
   "extends": [
     "next/core-web-vitals",
     "next/typescript",
+    "plugin:jest/recommended",
+    "plugin:jest-dom/recommended",
+    "plugin:testing-library/react",
     "plugin:tailwindcss/recommended",
     "prettier"
   ],
